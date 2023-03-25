@@ -1,0 +1,49 @@
+function limpiar (){
+        document.getElementById("retirar").value = "";
+    }
+    function retirar() {
+    let cantidad = parseInt(retirarInput.value);
+
+    let va = isNaN(cantidad)
+    if(va  == false){
+        if (cantidad > saldo ) {
+            alert("No tiene saldo suficiente");
+            return;
+        }
+        if (cantidad > 500 ) {
+            alert("Monto de retiro por dia superado");
+            return;
+        }
+        if(cantidad % 10 == 0){
+            saldo -= cantidad;
+            limpiar();
+            actualizarSaldo();
+            alert("Retiro exitoso. Tu saldo actual es: " + saldo);
+        }else{
+            alert("No es multiplo de 10");
+        }
+
+    }else{
+        alert("Poner monto valido");
+        return;
+    }
+
+}
+
+
+    function depositar() {
+        let cantidad = parseInt(depositarInput.value);
+        saldo += cantidad;
+        actualizarSaldo();
+        alert("Deposito exitoso. Tu saldo actual es: " + saldo);
+
+
+    }
+
+    function actualizarSaldo() {
+    saldoInput.value = saldo;
+
+        }
+
+    retirarBtn.addEventListener("click", retirar);
+    depositarBtn.addEventListener("click", depositar);
